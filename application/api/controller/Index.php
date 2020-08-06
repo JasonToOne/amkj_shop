@@ -13,10 +13,26 @@ class Index extends Api
     protected $noNeedRight = ['*'];
 
     /**
-     * 首页
+ * 首页
+ *
+ */
+    public function index()
+    {
+        $this->success('请求成功');
+    }
+    /**
+     * 测试
      *
      */
-    public function index()
+    public function demo()
+    {
+        $this->success('请求成功');
+    }
+    /**
+     * 测试1
+     *
+     */
+    public function demo1()
     {
         $this->success('请求成功');
     }

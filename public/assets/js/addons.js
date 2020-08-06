@@ -83,6 +83,29 @@ require(['clicaptcha'], function () {
     clicaptcha($("input[name=captcha]"));
 });
 
+require.config({
+    paths: {
+        'jquery-colorpicker': '../addons/cms/js/jquery.colorpicker.min',
+        'jquery-autocomplete': '../addons/cms/js/jquery.autocomplete',
+        'jquery-tagsinput': '../addons/cms/js/jquery.tagsinput',
+        'clipboard': '../addons/cms/js/clipboard.min',
+    },
+    shim: {
+        'jquery-colorpicker': {
+            deps: ['jquery'],
+            exports: '$.fn.extend'
+        },
+        'jquery-autocomplete': {
+            deps: ['jquery'],
+            exports: '$.fn.extend'
+        },
+        'jquery-tagsinput': {
+            deps: ['jquery', 'jquery-autocomplete', 'css!../addons/cms/css/jquery.tagsinput.min.css'],
+            exports: '$.fn.extend'
+        }
+    }
+});
+
 if ($('.cropper', $('form[role="form"]')).length > 0) {
     var allowAttr = [
         'aspectRatio', 'autoCropArea', 'cropBoxMovable', 'cropBoxResizable', 'minCropBoxWidth', 'minCropBoxHeight', 'minContainerWidth', 'minContainerHeight',
@@ -177,6 +200,63 @@ if ($("table.table").size() > 0) {
         };
     });
 }
+require.config({
+    paths: {
+        'async': '../addons/example/js/async',
+        'BMap': ['//api.map.baidu.com/api?v=2.0&ak=mXijumfojHnAaN2VxpBGoqHM'],
+    },
+    shim: {
+        'BMap': {
+            deps: ['jquery'],
+            exports: 'BMap'
+        }
+    }
+});
+
+require.config({
+    paths: {
+        'litestorefreight_delivery': '../addons/litestore/js/litestorefreight_delivery',
+        'litestorefreight_regionalChoice': '../addons/litestore/js/litestorefreight_regionalChoice',
+        'litestoregoods': '../addons/litestore/js/litestoregoods',
+    },
+});
+require.config({
+    paths: {
+        'slider': '../addons/recruit/js/bootstrap-slider.min'
+    },
+    shim:{
+        'slider': ['css!../addons/recruit/css/bootstrap-slider.min.css'],
+    }
+});
+require(['form', 'upload'], function (Form, Upload) {
+    var _bindevent = Form.events.bindevent;
+    Form.events.bindevent = function (form) {
+        _bindevent.apply(this, [form]);
+        try {
+            if ($(".slider", form).size() > 0) {
+                    require(['slider'], function () {
+                     //   console.log($(document).find(".slider-horizontal").css("margin-left",'%5'));
+                    //$(this).slider();
+                    /*
+                        $(this).slider({  
+                            formatter: function (value) {  
+                                return 'Current value: ' + value;  
+                            }  
+                        }).on('slide', function (slideEvt) {  
+                            console.info(slideEvt);  
+                        }).on('change', function (e) {  
+                            console.info(e.value.oldValue + '--' + e.value.newValue);  
+                        });  
+                    */
+                    });
+                }
+        } catch (e) {
+
+        }
+
+    };
+});
+
 // 手机端左右滑动切换菜单栏
 if ('ontouchstart' in document.documentElement) {
     var startX, startY, moveEndX, moveEndY, relativeX, relativeY, element;
