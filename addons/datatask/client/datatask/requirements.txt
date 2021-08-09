@@ -21,7 +21,7 @@ pipenv==2020.5.28
 PyInstaller==3.5
 python-docx==0.8.10
 pytz==2020.1
-pywin32==221
+pywin32==301
 pywin32-ctypes==0.2.0
 requests==2.23.0
 six==1.15.0
